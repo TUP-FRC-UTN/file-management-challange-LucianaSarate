@@ -1,0 +1,20 @@
+.round-image {
+    width: 35px; 
+    height: 35px; 
+    border-radius: 50%;
+    object-fit: cover; 
+    margin: 0%;
+  }
+
+  .remaining-owners {
+    display: inline-block;
+    width: 35px; 
+    height: 35px; 
+    border-radius: 50%;
+    background-color: #4d4d4d;
+    color: white; 
+    text-align: center;
+    line-height: 30px; 
+    font-size: 15px;
+    margin-left: 5px;
+  }

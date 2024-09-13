@@ -1,0 +1,88 @@
+<div class="modal-header"> 
+    <h4 class="display-6" >Agregar Archivo</h4>
+</div>
+<div class="modal-body">
+    <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-12">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" 
+            name="nombre"
+            [(ngModel)]="nombre"
+            #nombreInput="ngModel"
+            [ngClass]="{
+                'is-invalid': nombreInput.invalid && (nombreInput.pristine  || nombreInput.touched),
+                'is-valid': !nombreInput.invalid && nombreInput.dirty
+              }"
+            required
+            >
+        </div>
+        <div class="col-md-12">
+          <label for="fecha" class="form-label">Fecha</label>
+          <input type="date" class="form-control" id="fecha" name="fecha"
+            [(ngModel)]="fecha"
+            #fechaInput="ngModel"
+            [ngClass]="{
+                'is-invalid': fechaInput.invalid && (fechaInput.dirty || fechaInput.touched),
+                'is-valid': !fechaInput.invalid && fechaInput.dirty
+              }"
+            required>
+        </div>
+        <div class="col-md-12">
+            
+            <label for="tipo" class="form-label">Tipo de Archivo</label>
+            <select class="form-select" id="tipo" name="tipo"
+                    [(ngModel)]="tipo"
+                    #tipoInput="ngModel"
+                    [ngClass]="{
+                      'is-invalid': tipoInput.invalid && (tipoInput.dirty || tipoInput.touched),
+                      'is-valid': !tipoInput.invalid && tipoInput.dirty
+                    }"
+                    required>
+              <option selected disabled value="">Choose...</option>
+              <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+            </select>
+          </div>
+        <div class="col-md-12">
+            <label for="validationCustom04" class="form-label">Carpeta</label>
+            <select class="form-select" id="validationCustom04" name="Carpeta"
+            [(ngModel)]="Carpeta"
+            #CarpetaInput="ngModel"
+            [ngClass]="{
+              'is-invalid': CarpetaInput.invalid && (CarpetaInput.dirty || CarpetaInput.touched),
+              'is-valid': !CarpetaInput.invalid && CarpetaInput.dirty
+            }"
+            required>
+              <option selected disabled value="">Choose...</option>
+              <option *ngFor="let folder of carpetas" [value]="folder.id">{{ folder.name }}</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-7">
+                <select class="form-select" id="validationCustom04" name="tipo"
+                        [(ngModel)]="selectedDueno"
+                        #duenoInput="ngModel"
+                        [ngClass]="{
+                            'is-invalid': duenoInput.invalid && (duenoInput.dirty || duenoInput.touched),
+                            'is-valid': !duenoInput.invalid && duenoInput.dirty
+                          }"
+                        required>
+                  <option selected disabled value="">Choose...</option>
+                  <option *ngFor="let owner of duenos" [ngValue]="owner">{{ owner.name }}</option>
+                </select>
+              </div>
+              <div class="col-5">
+                <button type="button" class="btn btn-secondary" style="border-radius: 50%;"
+                        (click)="guardarDuen(selectedDueno)">+</button>
+              </div>
+            </div>
+           
+          </div>
+       
+      </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success ms-3" (click)="cerrar()">Aceptar</button>
+</div>
+
+  

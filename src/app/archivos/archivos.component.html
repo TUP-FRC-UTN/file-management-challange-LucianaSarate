@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <h4 class="display-6">Archivos</h4>
+        </div>
+        <div class="col-4">
+            <br>
+            <button class="btn btn-primary" style=" float: right;">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Acciones
+                </a>
+                <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="nuevo()">Nuevo</a></li>
+                <li><a class="dropdown-item"  (click)="borrar()">Borrar</a></li>
+                </ul>
+            </button>
+        </div>
+    </div>
+    
+        
+    <hr>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Dueños</th>
+          </tr>
+        </thead>
+        <tbody >
+            @for (item of FileItems; track $index) {
+                <tr>
+                    <th >
+                        <input class="form-check-input"  type="checkbox" (change)="Seleccionado(item)"[checked]="b.includes(item)">
+                    </th>
+                    <td>
+                        <i class="bi" [ngClass]="{'bi-file-earmark': item.type, 'bi-folder': !item.type}"></i>
+                        <span class="file-name" [attr.title]="item.name">
+                            {{item.name.length > 10 ? (item.name | slice:0:10) + '...' : item.name}}
+                        </span>
+                    </td>
+                    <td>{{item.creation  | date : ' MMM dd, yyyy'}}</td>
+                    <td>
+                        @for (i of item.owners.slice(0, 3); track $index) {
+                            <img src="{{i. avatarUrl}}" class="round-image"  >
+                        }
+                        @if(item.owners.length>3){
+                            <span class="remaining-owners">
+                                +{{item.owners.length - 3}}
+                            </span>
+                        }
+                    </td>
+                    
+                </tr>
+                
+            }
+          
+          
+        </tbody>
+      </table>
+    
+      
+</div>
